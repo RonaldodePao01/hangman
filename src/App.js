@@ -1,25 +1,141 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import { Words } from "./components/Words";
+import Alphabet from "./components/Alphabet";
+import { useState, useEffect } from "react";
+import NewModal from "./components/NewModal";
+import LoseModal from "./components/LoseModal";
+import RulesModal from "./components/Rules";
+import img1 from "./image/img1.PNG";
+import img2 from "./image/img2.PNG";
+import img3 from "./image/img3.PNG";
+import img4 from "./image/img4.PNG";
+import img5 from "./image/img5.PNG";
+import img6 from "./image/img6.PNG";
+import img7 from "./image/img7.png";
+
+// creating an array with the names of the images used
+const image = [img1, img2, img3, img4, img5, img6, img7];
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  // setting state
+  let [word, setWord] = useState("");
+  let [hiddenWord2, setHiddenWord2] = useState("");
+  let [wrongGuesses, setWrongGuesses] = useState("");
+  let [newGame, setNewGame] = useState(false);
+  let [index, setIndex] = useState(0);
 
+  // function to restart the game by resetting the state to original values
+  function handleRestart() {
+    setWord("");
+    setHiddenWord2("");
+    setWrongGuesses("");
+    setNewGame(false);
+    setIndex(0);
+  }
+
+  // function to get the word the player needs to guess
+  function getWord(items) {
+    // setting the state
+    setWord(items);
+    setHiddenWord2(items.split("").fill("_").join(""));
+    setNewGame(true);
+  }
+
+  // function to get the letter that the player inputs
+  function handleLetter(item) {
+    // checking if the word contains the letter the player inputs
+    if (word.includes(item)) {
+      //empty array to store the guesses
+      let guess = [];
+      let newHidden = hiddenWord2.split("");
+      // looping through the word
+      for (let i = 0; i < word.length; i++) {
+        // if word[i] === the letter they input, push the letter to guess array
+        if (word[i] === item) {
+          guess.push(item);
+        } else if (newHidden[i] !== "_") {
+          guess.push(newHidden[i]);
+        } else {
+          guess.push("_");
+        }
+      }
+
+      setHiddenWord2(guess.join(""));
+    } else {
+      wrongGuesses += `${item} `;
+      setWrongGuesses(wrongGuesses);
+      setIndex(++index);
+      //if user gets 6 guesses wrong, a modal will pop up telling them they have lost
+      if (wrongGuesses.length >= 12) {
+        openLose();
+      }
+    }
+  }
+
+  //function for modal when player loses
+  function openLose() {
+    const showLose = document.getElementById("lose-dialog");
+    showLose.showModal();
+  }
+
+  // function for modal when player clicks on "how to play"
+  function openRules() {
+    const showRules = document.getElementById("rules-dialog");
+    showRules.showModal();
+  }
+
+  //function for modal when player wins the game
+  function openModal() {
+    const showModal = document.querySelector("dialog");
+    showModal.showModal();
+  }
+
+  //useeffect to run every time hiddenword2 changes
+  useEffect(() => {
+    //if user gets the full word correct
+    if (hiddenWord2 == word && newGame) {
+      openModal();
+    }
+  }, [hiddenWord2]);
+
+  // conditional rendering for if "newgame" is true
+  if (newGame) {
+    return (
+      <div className="App">
+        <LoseModal />
+        <Header />
+        <NewModal />
+        <RulesModal />
+        <div>
+          {/* button that will restart the game by calling handlerestart */}
+          <button className="restart" onClick={handleRestart}>
+            Restart
+          </button>
+          {/* button that will call alertrules function */}
+          <button className="game-info" onClick={openRules}>
+            How to play
+          </button>
+        </div>
+        {/* using the image array to choose the source for which image is displayed */}
+        <img src={image[index]} />
+        <div className="letter-space">
+          <h1>{hiddenWord2}</h1>
+        </div>
+        <div className="wrong-guesses">
+          <h2>Wrong guesses:</h2>
+          <h3>{wrongGuesses.toString()}</h3>
+        </div>
+        <Alphabet handleLetter={handleLetter} />
+      </div>
+    );
+  } else if (!newGame) {
+    return (
+      <div className="App">
+        <Header />
+        <Words getWord={getWord} />
+      </div>
+    );
+  }
+}
 export default App;
