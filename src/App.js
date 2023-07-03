@@ -66,14 +66,26 @@ function App() {
       wrongGuesses += `${item} `;
       setWrongGuesses(wrongGuesses);
       setIndex(++index);
-      //if user gets 6 guesses wrong, a modal will pop up telling them they have lost
+      // if user gets 6 guesses wrong, a modal will pop up telling them they have lost
       if (wrongGuesses.length >= 12) {
         openLose();
       }
     }
   }
 
-  //function for modal when player loses
+  //function for modal when player wins the game
+  function openModal() {
+    const work = document.getElementById("win-dialog");
+    work.showModal();
+  }
+
+  function closeAll() {
+    document.getElementById("win-dialog").close();
+    document.getElementById("lose-dialog").close();
+    document.getElementById("rules-dialog").close();
+  }
+
+  // function for modal when player loses
   function openLose() {
     const showLose = document.getElementById("lose-dialog");
     showLose.showModal();
@@ -81,31 +93,27 @@ function App() {
 
   // function for modal when player clicks on "how to play"
   function openRules() {
-    const showRules = document.getElementById("rules-dialog");
-    showRules.showModal();
+    const showRules = document.getElementById("rules-dialog").showModal();
   }
 
-  //function for modal when player wins the game
-  function openModal() {
-    const showModal = document.querySelector("dialog");
-    showModal.showModal();
+  //if user gets the full word correct
+  if (hiddenWord2 === word && newGame) {
+    closeAll();
+    openModal();
   }
 
   //useeffect to run every time hiddenword2 changes
   useEffect(() => {
-    //if user gets the full word correct
-    if (hiddenWord2 == word && newGame) {
-      openModal();
-    }
+    setHiddenWord2(hiddenWord2);
   }, [hiddenWord2]);
 
   // conditional rendering for if "newgame" is true
   if (newGame) {
     return (
       <div className="App">
+        <NewModal />
         <LoseModal />
         <Header />
-        <NewModal />
         <RulesModal />
         <div>
           {/* button that will restart the game by calling handlerestart */}

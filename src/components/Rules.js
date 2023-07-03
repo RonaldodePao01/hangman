@@ -9,7 +9,7 @@ function RulesModal() {
         <p>You get 6 chances to guess correctly until the game ends</p>
         <p>Good luck and have fun!</p>
         <div>
-          <button value="close" formmethod="dialog">
+          <button value="close" formMethod="dialog">
             Close
           </button>
         </div>

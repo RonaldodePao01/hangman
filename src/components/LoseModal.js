@@ -6,7 +6,7 @@ function LoseModal() {
       <form>
         <h3>You lost! Try again</h3>
         <div>
-          <button value="close" formmethod="dialog">
+          <button value="close" formMethod="dialog">
             Close
           </button>
           <button id="restart" value="default">

@@ -2,14 +2,14 @@ import React from "react";
 
 function NewModal() {
   return (
-    <dialog id="dialog">
+    <dialog id="win-dialog">
       <form>
         <h3>congratulations you won!</h3>
         <div>
-          <button value="close" formmethod="dialog">
+          <button value="close" formMethod="dialog">
             Close
           </button>
-          <button id="restart" value="default" >
+          <button id="restart" value="default">
             Play again
           </button>
         </div>
