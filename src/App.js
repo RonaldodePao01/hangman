@@ -96,6 +96,7 @@ function App() {
     const showRules = document.getElementById("rules-dialog").showModal();
   }
 
+
   //if user gets the full word correct
   if (hiddenWord2 === word && newGame) {
     closeAll();
@@ -126,7 +127,7 @@ function App() {
           </button>
         </div>
         {/* using the image array to choose the source for which image is displayed */}
-        <img src={image[index]} />
+        <img src={image[index]} alt="hangman" />
         <div className="letter-space">
           <h1>{hiddenWord2}</h1>
         </div>
@@ -134,7 +135,9 @@ function App() {
           <h2>Wrong guesses:</h2>
           <h3>{wrongGuesses.toString()}</h3>
         </div>
+        <div className="alphabet">
         <Alphabet handleLetter={handleLetter} />
+        </div>
       </div>
     );
   } else if (!newGame) {
