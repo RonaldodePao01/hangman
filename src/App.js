@@ -6,13 +6,13 @@ import { useState, useEffect } from "react";
 import NewModal from "./components/NewModal";
 import LoseModal from "./components/LoseModal";
 import RulesModal from "./components/Rules";
-import img1 from "./image/img1.PNG";
-import img2 from "./image/img2.PNG";
-import img3 from "./image/img3.PNG";
-import img4 from "./image/img4.PNG";
-import img5 from "./image/img5.PNG";
-import img6 from "./image/img6.PNG";
-import img7 from "./image/img7.png";
+import img1 from "./images/img1.PNG";
+import img2 from "./images/img2.PNG";
+import img3 from "./images/img3.PNG";
+import img4 from "./images/img4.PNG";
+import img5 from "./images/img5.PNG";
+import img6 from "./images/img6.PNG";
+import img7 from "./images/img7.png";
 
 // creating an array with the names of the images used
 const image = [img1, img2, img3, img4, img5, img6, img7];
@@ -96,7 +96,6 @@ function App() {
     const showRules = document.getElementById("rules-dialog").showModal();
   }
 
-
   //if user gets the full word correct
   if (hiddenWord2 === word && newGame) {
     closeAll();
@@ -136,7 +135,7 @@ function App() {
           <h3>{wrongGuesses.toString()}</h3>
         </div>
         <div className="alphabet">
-        <Alphabet handleLetter={handleLetter} />
+          <Alphabet handleLetter={handleLetter} />
         </div>
       </div>
     );

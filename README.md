@@ -10,4 +10,4 @@ This app has been deployed using Vercel and can be found at this [link](https://
 
 ### Screenshot
 
-This is a screenshot of the application after clicking the "start game" button ![Result of searching for "Cape Town" using the app](./public/image/screenshot.PNG)
+This is a screenshot of the application after clicking the "start game" button ![Result of searching for "Cape Town" using the app](./src/images/screenshot.PNG)
