@@ -33,6 +33,10 @@ h3 {
   font-size: 32px;
 }
 
+.alphabet {
+  margin-bottom: 2rem;
+}
+
 .alphabet-btn {
   font-size: 1em;
   width: 40px;
