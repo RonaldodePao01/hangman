@@ -94,7 +94,7 @@ function App() {
 
   // function for modal when player clicks on "how to play"
   function openRules() {
-    const showRules = document.getElementById("rules-dialog").showModal();
+    document.getElementById("rules-dialog").showModal();
   }
 
   //if user gets the full word correct
