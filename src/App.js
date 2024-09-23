@@ -6,16 +6,17 @@ import { useState, useEffect } from "react";
 import NewModal from "./components/NewModal";
 import LoseModal from "./components/LoseModal";
 import RulesModal from "./components/Rules";
-import img1 from "./images/img1.PNG";
-import img2 from "./images/img2.PNG";
-import img3 from "./images/img3.PNG";
-import img4 from "./images/img4.PNG";
-import img5 from "./images/img5.PNG";
-import img6 from "./images/img6.PNG";
-import img7 from "./images/img7.png";
 
 // creating an array with the names of the images used
-const image = [img1, img2, img3, img4, img5, img6, img7];
+const image = [
+  `${process.env.PUBLIC_URL}/image/img1.PNG`,
+  `${process.env.PUBLIC_URL}/image/img2.PNG`,
+  `${process.env.PUBLIC_URL}/image/img3.PNG`,
+  `${process.env.PUBLIC_URL}/image/img4.PNG`,
+  `${process.env.PUBLIC_URL}/image/img5.PNG`,
+  `${process.env.PUBLIC_URL}/image/img6.PNG`,
+  `${process.env.PUBLIC_URL}/image/img7.PNG`,
+];
 
 function App() {
   // setting state
