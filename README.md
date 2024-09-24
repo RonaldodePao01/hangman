@@ -6,7 +6,7 @@ This is a hangman game I made using ReactJS when I first started learning React.
 
 ### Deployment
 
-This app has been deployed using Vercel and can be found at this [link](https://hangman-gamma-plum.vercel.app/)
+This app has been deployed using github pages and can be found at this [link](https://ronaldodepao01.github.io/hangman/)
 
 ### Screenshot
 
